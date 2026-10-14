@@ -276,7 +276,7 @@ enum {
 #if MODMATRIX == 1
   static float s_opval[POLYPHONY][OPERATOR_COUNT + FEEDBACK_COUNT * 2];
 #else
-  static float s_opval[POLYPHONY][OPERATOR_COUNT];
+  static float s_opval[POLYPHONY][(OPERATOR_COUNT + 3) & ~3] __attribute__((aligned(16)));
 #endif
 #if MODMATRIX == 1 || MODMATRIX == 2
   static float32x4x2_t vModMatrix[POLYPHONY][OPERATOR_COUNT];
